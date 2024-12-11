@@ -1,0 +1,11 @@
+id,nome,cargo,departamento,salario,data_admissao,email,idade,cidade
+1,João Silva,Analista de TI,Tecnologia,6500.50,2022-03-15,joao.silva@empresa.com,32,São Paulo
+2,Maria Santos,Gerente de Vendas,Comercial,8750.75,2019-07-22,maria.santos@empresa.com,41,Rio de Janeiro
+3,Pedro Oliveira,Assistente Administrativo,RH,3200.00,2023-01-10,pedro.oliveira@empresa.com,26,Belo Horizonte
+4,Ana Rodrigues,Engenheira de Software,Tecnologia,9100.25,2020-11-05,ana.rodrigues@empresa.com,35,Curitiba
+5,Carlos Mendes,Consultor Financeiro,Financeiro,7800.00,2021-05-18,carlos.mendes@empresa.com,38,Porto Alegre
+6,Lucia Costa,Coordenadora de Marketing,Marketing,6950.30,2022-09-01,lucia.costa@empresa.com,29,Salvador
+7,Fernando Almeida,Técnico de Suporte,TI,4500.75,2023-02-14,fernando.almeida@empresa.com,27,Brasília
+8,Sandra Pereira,Diretora Comercial,Comercial,12500.00,2018-04-03,sandra.pereira@empresa.com,45,Recife
+9,Roberto Souza,Analista Financeiro,Financeiro,5700.50,2022-06-20,roberto.souza@empresa.com,33,Fortaleza
+10,Mariana Cunha,Designer UX,Design,6200.25,2021-08-12,mariana.cunha@empresa.com,31,Florianópolis
