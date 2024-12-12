@@ -93,7 +93,7 @@ def insert_data(data):
             conn.close()
 
 
-def remove_invalid_cpf(data):
+def show_invalid_cpf(data):
     conn = connect_db()
     cursor = conn.cursor()
 
@@ -106,7 +106,7 @@ def remove_invalid_cpf(data):
     except Exception as e:
         if conn:
             conn.rollback()
-        print(Fore.RED + f'Erro ao inserir dados: {str(e)}\n' + Fore.RESET)
+        print(Fore.RED + f'Erro ao selecionar dados: {str(e)}\n' + Fore.RESET)
     finally:
         if cursor:
             cursor.close()
