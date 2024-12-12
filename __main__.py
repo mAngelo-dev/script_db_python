@@ -14,7 +14,7 @@ df = pd.read_csv('fake_csv.csv')
 # for coluna in df.columns:
 #     print(f"Coluna: {coluna} - Tipo: {df[coluna].dtype}")
 
-# Essa função me retornou uma lista com dicionários onde cada dicionário(objeto) representa uma linha.
+# Essa função me retornou uma lista de tuplas onde cada tupla representa uma linha.
 df_data = df.values.tolist()
 
 def insert_data(data):
