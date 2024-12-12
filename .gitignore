@@ -2,3 +2,5 @@
 .venv
 .env
 edital_51-2024.csv
+alunos_edital_51-2024.csv
+__pycache__

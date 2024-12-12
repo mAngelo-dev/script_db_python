@@ -24,8 +24,7 @@ from db_connection import connect
 def validate_csv(df):
     try:
         # TODO Adequar qual colunas são necessárias para executar as queries.
-        required_columns = ['id', 'nome', 'cargo', 'departamento',
-                            'salario', 'data_admissao', 'email', 'idade','cidade']
+        required_columns = ['cpf', 'id_curso_turno', 'id_programa_unidade']
 
         for column in required_columns:
             if column not in df.columns:
@@ -78,27 +77,41 @@ def insert_data(data):
     try:
         if not data:
             print(Fore.RED + 'Nenhum dado para inserir.\n' + Fore.RESET)
-            sys.exit(0)
-
-        cursor.executemany(
-            "INSERT INTO users"
-            " (id, nome, cargo, departamento, salario, data_admissao, email, idade, cidade)"
-            " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            data,
-        )
-        conn.commit()
-        print(Fore.GREEN + f"{cursor.rowcount} Dados inseridos com sucesso!\n" + Fore.RESET)
+        else:
+            print(Fore.BLUE + cursor.rowcount + 'Dados estão na tabela' + Fore.RESET)
+            cursor.executemany('INSERT INTO sis.setrab.tabela_temporaria (cpf, id_curso_turno, id_programa_unidade) VALUES (%s, %s, %s)', data)
+            conn.commit()
+            print(Fore.GREEN + f"{cursor.rowcount} Dados inseridos com sucesso!\n" + Fore.RESET)
     except Exception as e:
         if conn:
             conn.rollback()
         print(Fore.RED + f'Erro ao inserir dados: {str(e)}\n' + Fore.RESET)
-        sys.exit(1)
     finally:
         if cursor:
             cursor.close()
         if conn:
             conn.close()
 
+
+def remove_invalid_cpf(data):
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    try:
+        db_data = cursor.execute('SELECT tt.cpf, "CPF inválido" as situacao, p.nome as programa '
+                                 'FROM sis_setrab.tabela_temporaria tt '
+                                 'JOIN sis_setrab.programa p '
+                                 'ON p.id = tt.id_programa where formatcpfcnpj(cpf) is null')
+        db_data.to_csv('invalid_cpf.csv', index=False)
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        print(Fore.RED + f'Erro ao inserir dados: {str(e)}\n' + Fore.RESET)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 if __name__ == "__main__":
     init()
