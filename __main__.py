@@ -1,12 +1,14 @@
+import sys
 from colorama import init, Fore
 import pandas as pd
-import sys
 from db_connection import connect
 
-# O CSV é um DataFrame de acordo com a biblioteca Pandas, logo seu uso mais comum é utilizando a váriavel 'df'
+# O CSV é um DataFrame de acordo com a biblioteca Pandas,
+# logo seu uso mais comum é utilizando a váriavel 'df'
 # df = pd.read_csv('fake_csv.csv')
 
-# Os dtypes do DataFrame do arquivo .CSV conterão algumas rows, então aqui eu devo iterar sobre elas
+# Os dtypes do DataFrame do arquivo .CSV conterão algumas rows,
+# então aqui eu devo iterar sobre elas
 # Esse código me deu os nomes de cada coluna junto com seu tipo. (ex:
 # Coluna: id_programa - Tipo: int64
 # Coluna: curso - Tipo: object)
@@ -14,7 +16,8 @@ from db_connection import connect
 # for coluna in df.columns:
 #     print(f"Coluna: {coluna} - Tipo: {df[coluna].dtype}")
 
-# Essa função me retornou uma lista com dicionários onde cada dicionário(objeto) representa uma linha.
+# Essa função me retornou uma lista com dicionários
+# onde cada dicionário(objeto) representa uma linha.
 # df_data = df.values.tolist()
 
 
@@ -78,7 +81,9 @@ def insert_data(data):
             sys.exit(0)
 
         cursor.executemany(
-            "INSERT INTO users (id, nome, cargo, departamento, salario, data_admissao, email, idade, cidade) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            "INSERT INTO users"
+            " (id, nome, cargo, departamento, salario, data_admissao, email, idade, cidade)"
+            " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             data,
         )
         conn.commit()
